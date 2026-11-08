@@ -1,0 +1,535 @@
+/* ==========================================================================
+   Selected Collaborations - Editorial Logo Marquee Section
+   Strict Color System Palette:
+   - Background: #050505
+   - Secondary Background: #111111
+   - Cards / Sections: #181818
+   - Borders: #2A2A2A
+   - Primary Text: #F2F2F2
+   - Secondary Text: #8A8A8A
+   - Accent / Neon: #B6FF00
+   ========================================================================== */
+
+.collab-section {
+  position: relative;
+  width: 100%;
+  background-color: #050505;
+  color: #f2f2f2;
+  padding: clamp(3rem, 5vw, 4rem) 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Atmospheric subtle backdrop */
+.collab-ambient-glow {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(400px, 60vw, 850px);
+  height: clamp(300px, 45vw, 600px);
+  background: radial-gradient(circle, rgba(182, 255, 0, 0.028) 0%, rgba(5, 5, 5, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Optional gentle cursor spotlight */
+.collab-spotlight {
+  position: absolute;
+  top: -200px;
+  left: -200px;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(182, 255, 0, 0.045) 0%, rgba(182, 255, 0, 0) 65%);
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(var(--mx, 0), var(--my, 0));
+  transition: opacity 0.3s ease;
+  will-change: transform;
+}
+
+.collab-container {
+  position: relative;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  box-sizing: border-box;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   1. SECTION HEADER
+   ========================================================================== */
+.collab-header {
+  max-width: 700px;
+  margin-bottom: clamp(3rem, 5.5vw, 4.5rem);
+}
+
+/* Section Number "04" */
+.collab-number {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #b6ff00;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.collab-number__line {
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background-color: rgba(182, 255, 0, 0.5);
+}
+
+/* Main Heading: Exact Outline Neon Treatment */
+.collab-heading {
+  font-family: var(--font-display, "Antonio", sans-serif);
+  font-size: clamp(2.4rem, 4.4vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: 0.035em;
+  color: #f2f2f2;
+  -webkit-text-stroke: 0.8px #b6ff00;
+  text-shadow: 0 0 8px rgba(182, 255, 0, 0.15);
+  margin: 0 0 1.25rem 0;
+  text-transform: uppercase;
+}
+
+.collab-heading span {
+  display: block;
+}
+
+/* Supporting Text */
+.collab-subtitle {
+  margin: 0;
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height: 1.6;
+  color: #8a8a8a;
+  max-width: 480px;
+}
+
+/* ==========================================================================
+   2. INFINITE LOGO MARQUEE
+   ========================================================================== */
+.collab-marquee-wrapper {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  overflow: hidden;
+  padding: 2.75rem 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Edge Fade Gradients for cinematic seamless integration */
+.collab-marquee-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(40px, 12vw, 160px);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.collab-marquee-fade--left {
+  left: 0;
+  background: linear-gradient(to right, #050505 0%, rgba(5, 5, 5, 0.85) 50%, transparent 100%);
+}
+
+.collab-marquee-fade--right {
+  right: 0;
+  background: linear-gradient(to left, #050505 0%, rgba(5, 5, 5, 0.85) 50%, transparent 100%);
+}
+
+/* Continuous CSS Marquee Track */
+.collab-marquee-track {
+  display: flex;
+  gap: clamp(1.5rem, 2.8vw, 2.5rem);
+  width: max-content;
+  animation: collabMarqueeScroll 34s linear infinite;
+  will-change: transform;
+}
+
+.collab-marquee-track--paused {
+  animation-play-state: paused;
+}
+
+@keyframes collabMarqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-33.333333%, 0, 0);
+  }
+}
+
+/* ==========================================================================
+   3. LOGO CARD DESIGN
+   ========================================================================== */
+.collab-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(240px, 22vw, 300px);
+  height: clamp(125px, 13vw, 155px);
+  background: #181818;
+  border: 1px solid #2a2a2a;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 2rem;
+  box-sizing: border-box;
+  cursor: pointer;
+  outline: none;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    background-color 0.35s ease,
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+/* Subtle corner details */
+.collab-card__corner-tl {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 10px;
+  height: 10px;
+  border-top: 1.5px solid transparent;
+  border-left: 1.5px solid transparent;
+  border-top-left-radius: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.collab-card__corner-br {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 10px;
+  height: 10px;
+  border-bottom: 1.5px solid transparent;
+  border-right: 1.5px solid transparent;
+  border-bottom-right-radius: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.collab-card__inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Logo Image & SVG Styling */
+.collab-card__logo-img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 110px;
+  object-fit: contain;
+  filter: grayscale(100%) contrast(0.9);
+  opacity: 0.55;
+  transition:
+    filter 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.company-logo-svg {
+  max-width: 95%;
+  max-height: 68px;
+  color: #8a8a8a;
+  opacity: 0.55;
+  transition:
+    color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Card Hover & Active Focus States: Amplified Scale & Glow */
+.collab-card:hover,
+.collab-card--active,
+.collab-card:focus-visible {
+  transform: translateY(-8px) scale(1.12);
+  background-color: #111111;
+  border-color: rgba(182, 255, 0, 0.55);
+  box-shadow:
+    0 20px 40px -12px rgba(0, 0, 0, 0.85),
+    0 0 28px rgba(182, 255, 0, 0.14);
+  z-index: 10;
+}
+
+.collab-card:hover .collab-card__corner-tl,
+.collab-card--active .collab-card__corner-tl,
+.collab-card:focus-visible .collab-card__corner-tl {
+  border-color: #b6ff00;
+}
+
+.collab-card:hover .collab-card__corner-br,
+.collab-card--active .collab-card__corner-br,
+.collab-card:focus-visible .collab-card__corner-br {
+  border-color: #b6ff00;
+}
+
+.collab-card:hover .collab-card__logo-img,
+.collab-card--active .collab-card__logo-img,
+.collab-card:focus-visible .collab-card__logo-img {
+  filter: grayscale(0%) contrast(1.08);
+  opacity: 1;
+  transform: scale(1.10);
+}
+
+.collab-card:hover .company-logo-svg,
+.collab-card--active .company-logo-svg,
+.collab-card:focus-visible .company-logo-svg {
+  color: #f2f2f2;
+  opacity: 1;
+  transform: scale(1.10);
+}
+
+/* ==========================================================================
+   4. ACTIVE COMPANY INFORMATION AREA
+   ========================================================================== */
+.collab-info-area {
+  margin-top: clamp(2.5rem, 4vw, 3.5rem);
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collab-info-card {
+  width: 100%;
+  max-width: 680px;
+  background: #181818;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 1.25rem 1.75rem;
+  box-sizing: border-box;
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.collab-info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.collab-info-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.collab-info-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #b6ff00;
+  box-shadow: 0 0 10px #b6ff00;
+  display: inline-block;
+}
+
+.collab-info-name {
+  font-family: var(--font-display, "Antonio", sans-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #f2f2f2;
+  text-transform: uppercase;
+}
+
+.collab-info-badge {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.75rem;
+  color: #8a8a8a;
+  background: #111111;
+  border: 1px solid #2a2a2a;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.collab-info-role {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.85rem;
+  color: #b6ff00;
+  letter-spacing: 0.04em;
+}
+
+.collab-info-divider {
+  width: 100%;
+  height: 1px;
+  background: #2a2a2a;
+}
+
+.collab-info-highlights {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 0.92rem;
+  color: #8a8a8a;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+.collab-rich-text p {
+  margin: 0 0 0.75rem 0;
+}
+.collab-rich-text p:last-child {
+  margin: 0;
+}
+.collab-rich-text ul {
+  margin: 0 0 0.75rem 1.25rem;
+  padding: 0;
+}
+.collab-rich-text li {
+  margin-bottom: 0.25rem;
+}
+.collab-rich-text strong {
+  color: #f2f2f2;
+  font-weight: 500;
+}
+
+/* Neutral subtle placeholder state */
+.collab-info-neutral {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.collab-info-neutral-line {
+  width: clamp(24px, 6vw, 60px);
+  height: 1px;
+  background-color: #2a2a2a;
+}
+
+.collab-info-neutral-text {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: #8a8a8a;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ==========================================================================
+   5. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+  .collab-card {
+    width: clamp(210px, 24vw, 250px);
+    height: 125px;
+    padding: 1rem 1.5rem;
+  }
+
+  .collab-card__logo-img {
+    max-height: 85px;
+  }
+
+  .company-logo-svg {
+    max-height: 56px;
+  }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+  .collab-section {
+    padding: clamp(2rem, 4vw, 3rem) 0;
+  }
+
+  .collab-header {
+    margin-bottom: 2.25rem;
+  }
+
+  .collab-marquee-wrapper {
+    padding: 2rem 0;
+  }
+
+  .collab-card {
+    width: 205px;
+    height: 110px;
+    padding: 0.9rem 1.25rem;
+    border-radius: 12px;
+  }
+
+  .collab-card:hover,
+  .collab-card--active,
+  .collab-card:focus-visible {
+    transform: translateY(-6px) scale(1.08);
+  }
+
+  .collab-card__logo-img {
+    max-height: 75px;
+  }
+
+  .company-logo-svg {
+    max-height: 50px;
+  }
+
+  .collab-info-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .collab-info-card {
+    padding: 1rem 1.25rem;
+  }
+
+  .collab-info-neutral-text {
+    font-size: 0.72rem;
+  }
+}
+
+/* ==========================================================================
+   6. PREFERS-REDUCED-MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .collab-marquee-track {
+    animation: none !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    transform: none !important;
+  }
+
+  .collab-marquee-wrapper {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    overflow: visible;
+  }
+
+  .collab-marquee-fade {
+    display: none;
+  }
+
+  .collab-spotlight {
+    display: none !important;
+  }
+}

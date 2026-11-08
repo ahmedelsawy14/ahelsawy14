@@ -1,0 +1,496 @@
+/* ==========================================================================
+   SkillsSection - Scroll-Driven Horizontal Showcase
+   Strict Design System Palette:
+   - Background: #050505
+   - Secondary Surface: #111111
+   - Cards: #181818
+   - Borders: #2A2A2A
+   - Primary Text: #F2F2F2
+   - Secondary Text: #8A8A8A
+   - Accent / Neon: #B6FF00
+   ========================================================================== */
+
+.skills-scroll-container {
+  position: relative;
+  width: 100%;
+  height: 320vh; /* Provides vertical scrolling canvas converted into horizontal motion */
+  background-color: transparent;
+  color: #f2f2f2;
+}
+
+/* ==========================================================================
+   1. STICKY VIEWPORT
+   ========================================================================== */
+.skills-sticky-viewport {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  isolation: isolate;
+  z-index: 2;
+}
+
+/* Ambient Subtle Radial Backdrop */
+.skills-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(500px, 70vw, 1100px);
+  height: clamp(400px, 60vw, 800px);
+  background: radial-gradient(circle, rgba(182, 255, 0, 0.022) 0%, rgba(5, 5, 5, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .skills-ambient-light {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   2. HUGE OVERSIZED BACKGROUND TITLE (SITS BEHIND CARDS)
+   ========================================================================== */
+.skills-giant-bg-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-62%);
+  width: 100vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.skills-marquee-content {
+  display: flex;
+  gap: 4rem;
+  padding-right: 4rem;
+  animation: scrollGiantText 35s linear infinite;
+  will-change: transform;
+}
+
+@keyframes scrollGiantText {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.skills-giant-bg-title span {
+  font-family: var(--font-display, "Antonio", sans-serif);
+  font-size: clamp(8rem, 20vw, 24rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #050505;
+  -webkit-text-fill-color: #050505;
+  -webkit-text-stroke: 1.5px #b6ff00;
+  opacity: 0.85;
+  transition: -webkit-text-stroke 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* ==========================================================================
+   3. SECTION HEADER META
+   ========================================================================== */
+.skills-section-meta {
+  position: absolute;
+  top: clamp(2.5rem, 5vh, 4rem);
+  left: clamp(2rem, 6vw, 6rem);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.skills-meta-number {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #b6ff00;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.skills-meta-line {
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background-color: rgba(182, 255, 0, 0.5);
+}
+
+.skills-meta-title {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #8a8a8a;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   4. HORIZONTAL TRACK & CARDS SEQUENCE
+   ========================================================================== */
+.skills-track-wrapper {
+  position: relative;
+  width: 100%;
+  z-index: 3;
+  margin-top: clamp(4rem, 8vh, 6rem);
+}
+
+.skills-track {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: clamp(2rem, 4.5vw, 4.5rem);
+  padding-left: clamp(2rem, 6vw, 6rem);
+  padding-right: clamp(4rem, 10vw, 10rem);
+  width: max-content;
+  will-change: transform;
+}
+
+/* ==========================================================================
+   5. SKILL CARD DESIGN
+   ========================================================================== */
+.skill-card {
+  position: relative;
+  width: clamp(360px, 46vw, 580px);
+  min-height: clamp(380px, 50vh, 460px);
+  background-color: #181818;
+  border: 1px solid #2a2a2a;
+  border-radius: 18px;
+  box-shadow:
+    0 24px 60px -15px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(42, 42, 42, 0.6);
+  padding: clamp(2rem, 3.5vw, 2.75rem);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+  outline: none;
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.skill-card:hover,
+.skill-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(182, 255, 0, 0.45);
+  box-shadow:
+    0 30px 70px -15px rgba(0, 0, 0, 0.95),
+    0 0 25px rgba(182, 255, 0, 0.08);
+}
+
+/* Geometric Corner Accents */
+.skill-card__accent-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(182, 255, 0, 0.4) 50%, transparent 100%);
+  opacity: 0.65;
+}
+
+.skill-card__corner-tl {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid transparent;
+  border-left: 2px solid transparent;
+  border-top-left-radius: 18px;
+  transition: border-color 0.3s ease;
+}
+
+.skill-card__corner-br {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 14px;
+  height: 14px;
+  border-bottom: 2px solid transparent;
+  border-right: 2px solid transparent;
+  border-bottom-right-radius: 18px;
+  transition: border-color 0.3s ease;
+}
+
+.skill-card:hover .skill-card__corner-tl,
+.skill-card:focus-visible .skill-card__corner-tl,
+.skill-card:hover .skill-card__corner-br,
+.skill-card:focus-visible .skill-card__corner-br {
+  border-color: #b6ff00;
+}
+
+/* Card Header */
+.skill-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.skill-card__index {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+}
+
+.skill-card__index-current {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #b6ff00;
+  letter-spacing: 0.08em;
+}
+
+.skill-card__index-sep {
+  font-size: 0.85rem;
+  color: #555555;
+}
+
+.skill-card__index-total {
+  font-size: 0.85rem;
+  color: #8a8a8a;
+}
+
+.skill-card__category {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.75rem;
+  color: #8a8a8a;
+  background-color: #111111;
+  border: 1px solid #2a2a2a;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Card Body */
+.skill-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.skill-card__title {
+  font-family: var(--font-display, "Antonio", sans-serif);
+  font-size: clamp(2rem, 3.4vw, 2.85rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: 0.04em;
+  color: #f2f2f2;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.skill-card__description {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: clamp(0.9rem, 1.05vw, 0.98rem);
+  line-height: 1.65;
+  color: #8a8a8a;
+  margin: 0;
+}
+
+.skill-card__divider {
+  width: 100%;
+  height: 1px;
+  background-color: #2a2a2a;
+  margin-bottom: 1.25rem;
+}
+
+/* Skills List */
+.skill-card__list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.skill-card__list-label {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.72rem;
+  color: #555555;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.skill-card__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-card__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.82rem;
+  color: #8a8a8a;
+  letter-spacing: 0.02em;
+  transition: color 0.25s ease;
+}
+
+.skill-card__item--highlight {
+  color: #f2f2f2;
+}
+
+.skill-card__item-bullet {
+  color: #555555;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.skill-card__item-bullet--neon {
+  color: #b6ff00;
+  text-shadow: 0 0 6px rgba(182, 255, 0, 0.6);
+}
+
+.skill-card:hover .skill-card__item {
+  color: #f2f2f2;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+/* Tablet (1024px and below) */
+@media (max-width: 1024px) {
+  .skills-scroll-container {
+    height: 300vh;
+  }
+
+  .skill-card {
+    width: clamp(340px, 58vw, 480px);
+    min-height: 400px;
+    padding: 2rem;
+  }
+
+  .skills-giant-bg-title span {
+    font-size: clamp(4.5rem, 16vw, 10rem);
+    -webkit-text-stroke: 1.2px #b6ff00;
+  }
+}
+
+/* Mobile (768px and below) */
+@media (max-width: 768px) {
+  .skills-scroll-container {
+    height: 280vh;
+  }
+
+  .skills-sticky-viewport {
+    justify-content: flex-start;
+    padding-top: 8rem;
+    height: auto;
+    max-height: none;
+    padding-bottom: 3rem;
+  }
+
+  .skills-section-meta {
+    top: 2rem;
+    left: 1.5rem;
+  }
+
+  .skills-track-wrapper {
+    margin-top: 0.3rem;
+  }
+
+  .skills-track {
+    padding-left: 1.5rem;
+    padding-right: 3rem;
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    width: 86vw;
+    min-height: 380px;
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .skill-card__title {
+    font-size: 1.85rem;
+  }
+
+  .skill-card__list {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .skills-giant-bg-title {
+    /* No top override needed now, as it aligns perfectly to wrapper */
+  }
+
+  .skills-giant-bg-title span {
+    font-size: clamp(6.5rem, 28vw, 12rem);
+    -webkit-text-stroke: 1.5px #b6ff00;
+  }
+}
+
+/* ==========================================================================
+   7. PREFERS-REDUCED-MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .skills-scroll-container {
+    height: auto !important;
+  }
+
+  .skills-sticky-viewport {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 5rem 1.5rem !important;
+    overflow: visible !important;
+  }
+
+  .skills-track-wrapper {
+    margin-top: 2rem;
+  }
+
+  .skills-track {
+    width: 100% !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+
+  .skill-card {
+    width: 100% !important;
+    min-height: auto !important;
+    transform: none !important;
+  }
+
+  .skills-giant-bg-title {
+    position: static;
+    transform: none;
+    margin-bottom: 2rem;
+    justify-content: flex-start;
+  }
+}

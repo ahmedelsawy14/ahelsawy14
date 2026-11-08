@@ -1,0 +1,485 @@
+/* ==========================================================================
+   ContactSection - Luxury Editorial Final Portfolio Statement
+   Strict Design System:
+   - Primary Background: #050505
+   - Secondary Surface: #111111 / #181818
+   - Borders: #2A2A2A
+   - Text Primary: #F2F2F2
+   - Text Secondary: #8A8A8A
+   - Neon Accent: #B6FF00
+   ========================================================================== */
+
+.contact-section {
+  position: relative;
+  width: 100%;
+  background-color: transparent;
+  color: #f2f2f2;
+  padding: clamp(4rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem) 2.5rem clamp(1.5rem, 5vw, 5rem);
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100svh;
+}
+
+/* Atmospheric subtle ambient backdrop */
+.contact-ambient-glow {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(500px, 75vw, 1200px);
+  height: clamp(350px, 50vw, 750px);
+  background: radial-gradient(circle at center, rgba(182, 255, 0, 0.035) 0%, rgba(5, 5, 5, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.contact-container {
+  position: relative;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* ==========================================================================
+   1. SECTION NUMBER & META HEADER (07 / CONTACT)
+   ========================================================================== */
+.contact-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #b6ff00;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.contact-meta__line {
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background-color: rgba(182, 255, 0, 0.5);
+}
+
+.contact-meta__label {
+  color: #b6ff00;
+}
+
+/* ==========================================================================
+   2. MAIN EDITORIAL LAYOUT (ASYMMETRIC 2-COLUMN COMPOSITION)
+   ========================================================================== */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(3rem, 6vw, 6.5rem);
+  align-items: start;
+  margin-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+/* --------------------------------------------------------------------------
+   LEFT COLUMN: GIANT STATEMENT & DIRECT CTA
+   -------------------------------------------------------------------------- */
+.contact-statement {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contact-heading {
+  margin: 0 0 clamp(2rem, 3.5vw, 3rem) 0;
+  font-family: var(--font-display, "Antonio", sans-serif);
+  font-size: clamp(3.8rem, 8vw, 8.5rem);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: 0.03em;
+  color: #f2f2f2;
+  text-transform: uppercase;
+}
+
+.contact-heading__line {
+  display: block;
+  white-space: nowrap;
+}
+
+/* Selective Neon Accent on "GREAT." */
+.contact-heading__line--accent {
+  color: #f2f2f2;
+  -webkit-text-stroke: 1px #b6ff00;
+  text-shadow: 0 0 16px rgba(182, 255, 0, 0.2), 0 0 32px rgba(182, 255, 0, 0.1);
+  letter-spacing: 0.04em;
+}
+
+/* Direct Conversation CTA Badge */
+.contact-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: #111111;
+  color: #f2f2f2;
+  border: 1px solid #2a2a2a;
+  border-radius: 999px;
+  padding: 0.9rem 1.8rem;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.7);
+}
+
+.contact-cta-btn__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #b6ff00;
+  box-shadow: 0 0 8px #b6ff00;
+  transition: transform 0.3s ease;
+}
+
+.contact-cta-btn__icon {
+  font-size: 1.1rem;
+  color: #b6ff00;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-cta-btn:hover {
+  background: #181818;
+  border-color: #b6ff00;
+  color: #ffffff;
+  box-shadow: 0 12px 30px -4px rgba(182, 255, 0, 0.18);
+  transform: translateY(-2px);
+}
+
+.contact-cta-btn:hover .contact-cta-btn__icon {
+  transform: translate(3px, -3px);
+}
+
+.contact-cta-btn:hover .contact-cta-btn__dot {
+  transform: scale(1.25);
+}
+
+/* --------------------------------------------------------------------------
+   RIGHT COLUMN: INTRO STATEMENT & EDITORIAL CONTACT ROWS
+   -------------------------------------------------------------------------- */
+.contact-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-intro-text {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: clamp(1.08rem, 1.35vw, 1.25rem);
+  line-height: 1.68;
+  color: #a3a3a3;
+  margin: 0 0 clamp(2.5rem, 4vw, 3.5rem) 0;
+  max-width: 540px;
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   3. EDITORIAL CONTACT ROWS (HORIZONTAL STRIPS WITH HOVER REVEAL)
+   ========================================================================== */
+.contact-links-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-top: 1px solid #2a2a2a;
+}
+
+.contact-row-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.contact-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(1.2rem, 2vw, 1.55rem) clamp(0.6rem, 1.2vw, 1rem);
+  border-bottom: 1px solid #2a2a2a;
+  color: #f2f2f2;
+  transition: background-color 0.25s ease, padding 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+/* Smooth expanding bottom accent underline */
+.contact-row::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: #b6ff00;
+  box-shadow: 0 0 12px #b6ff00;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-row__left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.contact-row__icon {
+  font-size: 1.2rem;
+  color: #8a8a8a;
+  transition: color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-row__label {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: clamp(0.95rem, 1.15vw, 1.12rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #a3a3a3;
+  text-transform: uppercase;
+  transition: color 0.25s ease, letter-spacing 0.25s ease;
+}
+
+.contact-row__arrow {
+  font-size: 1.35rem;
+  color: #8a8a8a;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Editorial Hover State */
+.contact-row:hover {
+  padding-left: clamp(1rem, 1.6vw, 1.4rem);
+  padding-right: clamp(1rem, 1.6vw, 1.4rem);
+  background: rgba(255, 255, 255, 0.022);
+}
+
+.contact-row:hover::after {
+  width: 100%;
+}
+
+.contact-row:hover .contact-row__label {
+  color: #ffffff;
+  letter-spacing: 0.2em;
+}
+
+.contact-row:hover .contact-row__icon {
+  color: #b6ff00;
+  transform: scale(1.15);
+}
+
+.contact-row:hover .contact-row__arrow {
+  color: #b6ff00;
+  transform: translate(5px, -5px);
+}
+
+/* Keyboard focus visibility */
+.contact-row:focus-visible,
+.contact-cta-btn:focus-visible,
+.contact-footer__back-to-top:focus-visible {
+  outline: 2px solid #b6ff00;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   4. MINIMAL EDITORIAL FOOTER
+   ========================================================================== */
+.contact-footer {
+  position: relative;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding-top: 2.25rem;
+  border-top: 1px solid #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  z-index: 1;
+}
+
+.contact-footer__copyright {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 0.85rem;
+  color: #71717a;
+  letter-spacing: 0.02em;
+}
+
+.contact-footer__tech {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.76rem;
+  color: #52525b;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contact-footer__back-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  transition: color 0.25s ease, transform 0.25s ease;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+}
+
+.contact-footer__back-to-top-icon {
+  font-size: 1rem;
+  color: #b6ff00;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-footer__back-to-top:hover {
+  color: #ffffff;
+}
+
+.contact-footer__back-to-top:hover .contact-footer__back-to-top-icon {
+  transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ========================================================================== */
+
+/* Tablet (769px - 1024px) */
+@media (max-width: 1024px) {
+  .contact-section {
+    padding-top: 5rem;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .contact-heading {
+    font-size: clamp(3.5rem, 10vw, 5.5rem);
+    margin-bottom: 1.75rem;
+  }
+
+  .contact-intro-text {
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 4.5rem 1.25rem 2rem 1.25rem;
+    min-height: auto;
+  }
+
+  .contact-meta {
+    margin-bottom: 2rem;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .contact-heading {
+    font-size: clamp(3.4rem, 16vw, 4.8rem);
+    line-height: 0.96;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-cta-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.85rem 1.25rem;
+  }
+
+  .contact-intro-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+  }
+
+  .contact-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.15rem 0.5rem;
+  }
+
+  .contact-row__left {
+    gap: 1rem;
+  }
+
+  .contact-row__label {
+    font-size: 0.92rem;
+    letter-spacing: 0.14em;
+  }
+
+  .contact-row__arrow {
+    font-size: 1.15rem;
+  }
+
+  .contact-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding-top: 1.75rem;
+  }
+
+  .contact-footer__back-to-top {
+    align-self: flex-start;
+    padding: 0;
+  }
+}
+
+/* Small mobile (< 400px) */
+@media (max-width: 400px) {
+  .contact-heading {
+    font-size: 3.2rem;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: PREFERS-REDUCED-MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .contact-meta,
+  .contact-heading__line,
+  .contact-cta-btn,
+  .contact-intro-text,
+  .contact-row,
+  .contact-footer {
+    transform: none !important;
+    transition: opacity 0.2s ease !important;
+  }
+
+  .contact-row::after {
+    transition: none !important;
+  }
+
+  .contact-cta-btn__icon,
+  .contact-footer__back-to-top-icon,
+  .contact-row__arrow {
+    transition: none !important;
+  }
+}

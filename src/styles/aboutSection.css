@@ -1,0 +1,339 @@
+/* ==========================================================================
+   AboutSection - Luxury Editorial "About Me"
+   ========================================================================== */
+
+.about-section {
+  position: relative;
+  width: 100%;
+  background-color: #050505;
+  color: #f2f2f2;
+  padding: clamp(3rem, 5vw, 4rem) clamp(1.5rem, 5vw, 5rem);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Atmospheric subtle backdrop */
+.about-section__ambient {
+  position: absolute;
+  top: 30%;
+  right: 10%;
+  width: clamp(350px, 45vw, 650px);
+  height: clamp(350px, 45vw, 650px);
+  background: radial-gradient(circle, rgba(182, 255, 0, 0.035) 0%, rgba(5, 5, 5, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .about-section__ambient {
+    display: none;
+  }
+}
+
+.about-container {
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  z-index: 1;
+}
+
+/* ==========================================================================
+   LEFT COLUMN: CONTENT (50% - 55%)
+   ========================================================================== */
+.about-content {
+  flex: 1 1 54%;
+  max-width: 660px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Section Number */
+.about-number {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #b6ff00;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.about-number__line {
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background-color: rgba(182, 255, 0, 0.5);
+}
+
+/* Main Heading */
+.about-heading {
+  font-family: var(--font-display, 'Antonio', sans-serif);
+  font-size: clamp(2.4rem, 4.4vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: 0.035em;
+  color: #f3f4f6;
+  -webkit-text-stroke: 0.8px #b6ff00;
+  text-shadow: 0 0 8px rgba(182, 255, 0, 0.15);
+  margin: 0 0 1.75rem 0;
+  text-transform: uppercase;
+}
+
+.about-heading span {
+  display: block;
+}
+
+/* About Paragraphs */
+.about-description {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2.25rem;
+}
+
+.about-description p,
+.about-animated-paragraph {
+  margin: 0;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height: 1.75;
+  color: #8a8a8a;
+  font-weight: 400;
+}
+
+.about-description .about-lead-paragraph,
+.about-description p:first-child {
+  color: #f2f2f2;
+  font-size: clamp(1.02rem, 1.15vw, 1.12rem);
+  line-height: 1.7;
+}
+
+.about-word-wrap {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.about-char {
+  display: inline-block;
+  will-change: opacity, filter, transform;
+}
+
+.about-space {
+  display: inline;
+}
+
+/* Technology / Experience Tags */
+.about-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.about-skill-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #8a8a8a;
+  background: #111111;
+  border: 1px solid #2a2a2a;
+  padding: 0.45rem 0.95rem;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+  user-select: none;
+}
+
+.about-skill-tag:hover {
+  color: #b6ff00;
+  border-color: #b6ff00;
+  background: #181818;
+  box-shadow: 0 0 16px rgba(182, 255, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   RIGHT COLUMN: PORTRAIT VISUAL (40% - 45%)
+   ========================================================================== */
+.about-visual {
+  flex: 1 1 42%;
+  max-width: 480px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-portrait-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: 560px;
+  background: radial-gradient(circle at 50% 30%, #181818 0%, #111111 70%, #050505 100%);
+  border: 1px solid #2a2a2a;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.95);
+}
+
+.about-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: contrast(1.04) brightness(0.95);
+  display: block;
+  -webkit-mask-image: linear-gradient(to bottom, #000 80%, rgba(0, 0, 0, 0.6) 92%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 80%, rgba(0, 0, 0, 0.6) 92%, transparent 100%);
+}
+
+/* Subtle Geometric Neon Lime Accent Elements */
+.about-visual-accent__corner-tl {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  width: 22px;
+  height: 22px;
+  border-top: 2px solid #b6ff00;
+  border-left: 2px solid #b6ff00;
+  border-top-left-radius: 6px;
+  pointer-events: none;
+}
+
+.about-visual-accent__corner-br {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  border-bottom: 2px solid #b6ff00;
+  border-right: 2px solid #b6ff00;
+  border-bottom-right-radius: 6px;
+  pointer-events: none;
+}
+
+.about-visual-accent__line {
+  position: absolute;
+  top: 15%;
+  right: -10px;
+  width: 2px;
+  height: 48px;
+  background: linear-gradient(to bottom, #b6ff00 0%, transparent 100%);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+/* Tablet (769px - 1024px) */
+@media (max-width: 1024px) {
+  .about-section {
+    padding: 4.5rem 2rem;
+  }
+
+  .about-container {
+    gap: 2.5rem;
+  }
+
+  .about-heading {
+    font-size: clamp(2rem, 3.2vw, 2.75rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .about-description {
+    margin-bottom: 1.75rem;
+    gap: 0.95rem;
+  }
+
+  .about-portrait-card {
+    max-height: 440px;
+  }
+}
+
+/* Mobile (< 768px) - Recomposed Vertical Layout */
+@media (max-width: 768px) {
+  .about-section {
+    padding: 4rem 1.25rem;
+  }
+
+  .about-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+
+  .about-content,
+  .about-description {
+    display: contents;
+  }
+
+  .about-number {
+    order: 1;
+    margin-bottom: -0.25rem;
+  }
+
+  .about-heading {
+    order: 2;
+    font-size: clamp(1.85rem, 6.8vw, 2.4rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .about-animated-paragraph:nth-child(1) {
+    order: 3;
+  }
+
+  .about-visual {
+    order: 4;
+    max-width: 100%;
+    width: 100%;
+    margin: 1.25rem 0;
+  }
+
+  .about-animated-paragraph:nth-child(2) {
+    order: 5;
+  }
+
+  .about-animated-paragraph:nth-child(3) {
+    order: 6;
+  }
+
+  .about-portrait-card {
+    max-height: 380px;
+    margin: 0 auto;
+    width: 88%;
+    max-width: 340px;
+  }
+
+  .about-skills {
+    order: 7;
+    margin-top: 1rem;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: PREFERS-REDUCED-MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .about-number,
+  .about-heading,
+  .about-description,
+  .about-visual,
+  .about-skill-tag {
+    transform: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+}
